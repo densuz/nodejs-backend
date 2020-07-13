@@ -12,13 +12,11 @@ exports.registrasi = function(req,res) {
         username: req.body.username,
         email: req.body.email,
         password: md5(req.body.password),
-        tanggal_daftar: new Date(),
-        nohp: req.body.nohp,
-        alamat: req.body.alamat
+        tanggal_daftar: new Date()
     }
 
     var query = "SELECT email FROM ?? WHERE ??=?";
-    var table = ["t_user", "email", post.email];
+    var table = ["user", "email", post.email];
 
     query = mysql.format(query,table);
 
@@ -28,13 +26,13 @@ exports.registrasi = function(req,res) {
         }else {
             if(rows.length == 0){
                 var query = "INSERT INTO ?? SET ?";
-                var table = ["t_user"];
+                var table = ["user"];
                 query = mysql.format(query, table);
                 connection.query(query, post, function(error, rows){
                     if(error){
                         console.log(error);
                     }else {
-                        response.ok("Pendaftaran Berhasil, Silahkan Login", res);
+                        response.ok("Pendaftaran Berhasil!", res);
                     }
                 });
             }else {
@@ -52,7 +50,7 @@ exports.login = function(req,res){
     }
 
     var query = "SELECT * FROM ?? WHERE ??=? AND ??=?";
-    var table = ["t_user", "password", md5(post.password), "email", post.email];
+    var table = ["user", "password", md5(post.password), "email", post.email];
 
     query = mysql.format(query,table);
     
@@ -68,7 +66,7 @@ exports.login = function(req,res){
                 id_user = rows[0].id;
 
                 var data = {
-                    id_user: id,
+                    id_user: id_user,
                     access_token: token,
                     ip_address: ip.address()
                 }
