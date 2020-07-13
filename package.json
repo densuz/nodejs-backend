@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-backend",
+  "version": "1.0.0",
+  "description": "nodejs backend ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/densuz/nodejs-backend.git"
+  },
+  "keywords": [
+    "nodejs",
+    "backend",
+    "nodejs",
+    "backend",
+    "densuz"
+  ],
+  "author": "densuz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/densuz/nodejs-backend/issues"
+  },
+  "homepage": "https://github.com/densuz/nodejs-backend#readme"
+}
