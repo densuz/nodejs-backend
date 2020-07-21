@@ -6,21 +6,32 @@ module.exports = function (app) {
     app.route('/')
         .get(jsonku.index);
 
-    app.route('/tampil')
-        .get(jsonku.tampilsemuaproduk);
+    app.route('/tampilsemuabarang')
+        .get(jsonku.tampilsemuabarang);
 
-    app.route('/tampil/:id')
-        .get(jsonku.tampilberdasarkanid);
-    app.route('/tambah')
-        .post(jsonku.tambahproduk);
+    app.route('/tampilbarang/:id')
+        .get(jsonku.tampilbarangid);
+    app.route('/tambahbarang')
+        .post(jsonku.tambahbarang);
 
-    app.route('/ubah')
-        .put(jsonku.ubahproduk);
-        
-    app.route('/hapus')
-        .delete(jsonku.hapusproduk);
+    app.route('/ubahbarang')
+        .put(jsonku.ubahbarang);
 
-//    app.route('/tampilmatakuliah')
-  //      .get(jsonku.tampilgroupmatakuliah);
-        
+    app.route('/hapusbarang')
+        .delete(jsonku.hapusbarang);
+
+//TRANSAKSI
+    app.route('/tampiltransaksi')
+        .get(jsonku.tampilsemuatransaksi);
+
+        app.route('/tampilidtransaksi/:id')
+        .get(jsonku.tampiltransaksiid);
+
+        app.route('/tambahtransaksi')
+        .post(jsonku.tambahtransaksi);
+
+
+    //    app.route('/tampilmatakuliah')
+    //      .get(jsonku.tampilgroupmatakuliah);
+
 }

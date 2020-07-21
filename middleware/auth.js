@@ -9,9 +9,11 @@ var ip = require('ip');
 //controller untuk register
 exports.registrasi = function(req,res) {
     var post = {
+        nama_user: req.body.nama_user,
         username: req.body.username,
         email: req.body.email,
         password: md5(req.body.password),
+        role: req.body.role,
         tanggal_daftar: new Date(),
         nohp: req.body.nohp,
         alamat: req.body.alamat
@@ -44,6 +46,48 @@ exports.registrasi = function(req,res) {
     })
 }
 
+//controller untuk register
+exports.produk = function(req,res) {
+    var post = {
+        nama_user: req.body.nama_user,
+        username: req.body.username,
+        email: req.body.email,
+        password: md5(req.body.password),
+        role: req.body.role,
+        tanggal_daftar: new Date(),
+        nohp: req.body.nohp,
+        alamat: req.body.alamat
+    }
+
+    var query = "SELECT email FROM ?? WHERE ??=?";
+    var table = ["t_user", "email", post.email];
+
+    query = mysql.format(query,table);
+
+    connection.query(query, function(error, rows) {
+        if(error){
+            console.log(error);
+        }else {
+            if(rows.length == 0){
+                var query = "INSERT INTO ?? SET ?";
+                var table = ["t_user"];
+                query = mysql.format(query, table);
+                connection.query(query, post, function(error, rows){
+                    if(error){
+                        console.log(error);
+                    }else {
+                        response.ok("Pendaftaran Berhasil, Silahkan Login", res);
+                    }
+                });
+            }else {
+                response.ok("Email sudah terdaftar!",res);
+            }
+        }
+    })
+}
+
+
+
 // controller untuk login
 exports.login = function(req,res){
     var post = {
@@ -65,10 +109,10 @@ exports.login = function(req,res){
                     expiresIn: 1440
                 });
 
-                id_user = rows[0].id;
+                id_user = rows[0].id_user;
 
                 var data = {
-                    id_user: id,
+                    id_user: id_user,
                     access_token: token,
                     ip_address: ip.address()
                 }
