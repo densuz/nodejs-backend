@@ -3,9 +3,10 @@ var auth = require('./auth');
 var router = express.Router();
 var verifikasi = require('./verifikasi');
 
-//daftarkan RL menu registrasi
+//daftarkan URL menu registrasi
 router.post('/api/v1/register', auth.registrasi);
 router.post('/api/v1/login', auth.login);
+router.post('/api/v1/admin', auth.loginadmin);
 
 
 

@@ -6,8 +6,8 @@ module.exports = function (app) {
     app.route('/')
         .get(jsonku.index);
 
-    app.route('/tampilsemuabarang')
-        .get(jsonku.tampilsemuabarang);
+    app.route('/tampilbarang')
+        .get(jsonku.tampilbarang);
 
     app.route('/tampilbarang/:id')
         .get(jsonku.tampilbarangid);
@@ -20,18 +20,41 @@ module.exports = function (app) {
     app.route('/hapusbarang')
         .delete(jsonku.hapusbarang);
 
-//TRANSAKSI
+    app.route('/tampilbarang')
+        .get(jsonku.tampilgroupbarang);
+
+    //TRANSAKSI
     app.route('/tampiltransaksi')
         .get(jsonku.tampilsemuatransaksi);
 
-        app.route('/tampilidtransaksi/:id')
+    app.route('/tampilidtransaksi/:id')
         .get(jsonku.tampiltransaksiid);
 
-        app.route('/tambahtransaksi')
+    app.route('/tambahtransaksi')
         .post(jsonku.tambahtransaksi);
 
+    app.route('/ubahtransaksi')
+        .put(jsonku.ubahtransaksi);
 
-    //    app.route('/tampilmatakuliah')
-    //      .get(jsonku.tampilgroupmatakuliah);
+    app.route('/hapustransaksi')
+        .delete(jsonku.hapustransaksi);
+
+    //USER
+    app.route('/tampiluser')
+        .get(jsonku.tampiluser);
+
+    app.route('/tampiluserid/:id')
+        .get(jsonku.tampiluserid);
+
+    app.route('/tambahuser')
+        .post(jsonku.tambahuser);
+
+    app.route('/ubahuser')
+        .put(jsonku.ubahuser);
+
+    app.route('/hapususer')
+        .delete(jsonku.hapususer);
+
+
 
 }

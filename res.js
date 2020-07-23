@@ -20,12 +20,12 @@ exports.oknested = function (values, res) {
         if (akumulasikan[item.nama]) {
             //buat variabel group nama produk
             const group = akumulasikan[item.nama];
-            //cek jika isi array adalah matakuliah
-            if (Array.isArray(group.matakuliah)) {
-                //tambahkan value ke dalam group matakuliah
-                group.matakuliah.push(item.matakuliah);
+            //cek jika isi array adalah t_transaksi
+            if (Array.isArray(group.t_transaksi)) {
+                //tambahkan value ke dalam group t_transaksi
+                group.t_transaksi.push(item.t_transaksi);
             } else {
-                group.matakuliah = [group.matakuliah, item.matakuliah];
+                group.t_transaksi = [group.t_transaksi, item.t_transaksi];
             }
         } else {
             akumulasikan[item.nama] = item;
