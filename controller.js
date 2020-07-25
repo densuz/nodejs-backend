@@ -40,6 +40,18 @@ exports.tampiluser = function (req, res) {
     });
 };
 
+
+//menampilkan semua data kontak
+exports.tampilkontak = function (req, res) {
+    connection.query('SELECT * FROM t_contact', function (error, rows, fileds) {
+        if (error) {
+            console.log(error);
+        } else {
+            response.ok(rows, res)
+        }
+    });
+};
+
 //=============================BATAS TAMPIL=======================================================///
 
 //menampilkan semua data tabel barang berdasarkan id_barang
@@ -146,6 +158,25 @@ exports.tambahuser = function (req, res) {
             }
         });
 };
+
+
+//menambahkan data kontak
+exports.tambahkontak = function (req, res) {
+    var id_contact = req.body.id_contact;
+    var nama_contact = req.body.nama_contact;
+    var email_contact = req.body.email_contact;
+    var pesan = req.body.pesan;
+
+    connection.query('INSERT INTO t_contact (id_contact,nama_contact, email_contact,pesan) VALUES(?,?,?,?)',
+        [id_contact,nama_contact, email_contact,pesan],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Pesan anda terkirim!", res)
+            }
+        });
+};
 //===============================================================BATAS TAMBAH DATA=======================================
 
 //mengubah data berdasarkan kode_transaksi
@@ -174,13 +205,11 @@ exports.ubahbarang= function (req, res) {
     var id_barang = req.body.id_barang;
     var kode_barang = req.body.kode_barang;
     var nama_barang = req.body.nama_barang;
-    var jenis_barang = req.body.jenis_barang;
-    var jumlah = req.body.jumlah;
+    var jumlah_barang = req.body.jumlah_barang;
     var harga = req.body.harga;
     var satuan = req.body.satuan;
-    var gambar_barang = gambar_barang;
 
-    connection.query('UPDATE t_barang SET kode_barang=?, nama_barang=?, jenis_barang=?, jumlah=?,harga=?,satuan=?,gambar_barang=?, WHERE id_barang=?', [kode_barang, nama_barang, jenis_barang,jumlah,harga,satuan,gambar_barang, id_barang],
+    connection.query('UPDATE t_barang SET kode_barang=?, nama_barang=?,harga=?, jumlah_barang=?,satuan=? WHERE id_barang=?', [kode_barang, nama_barang, jumlah_barang,harga,satuan, id_barang],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);

@@ -11,6 +11,7 @@ module.exports = function (app) {
 
     app.route('/tampilbarang/:id')
         .get(jsonku.tampilbarangid);
+
     app.route('/tambahbarang')
         .post(jsonku.tambahbarang);
 
@@ -20,7 +21,7 @@ module.exports = function (app) {
     app.route('/hapusbarang')
         .delete(jsonku.hapusbarang);
 
-    app.route('/tampilbarang')
+    app.route('/tampilbaranggroup')
         .get(jsonku.tampilgroupbarang);
 
     //TRANSAKSI
@@ -54,7 +55,9 @@ module.exports = function (app) {
 
     app.route('/hapususer')
         .delete(jsonku.hapususer);
-
-
+        
+//Kontak
+   app.route('/send')
+        .post(jsonku.tambahkontak);
 
 }
